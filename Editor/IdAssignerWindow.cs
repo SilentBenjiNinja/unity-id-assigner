@@ -15,7 +15,7 @@ namespace bnj.id_assigner.Editor
     /// Subclass it, add a <c>[MenuItem]</c>, and call <c>GetWindow</c> to open it. See the README for a full example.
     /// </summary>
     // TODO: actually check that the non-Odin editor window works as intended!
-    // TODO: auto-refresh?
+    // TODO: auto-refresh? separate fetch-in-use vs fetch all buttons? some way to show which assets are unassigned/duplicated without Odin's info boxes?
     // TODO: tests
 #if ODIN_INSPECTOR
     public abstract class IdAssignerWindow<T> : OdinEditorWindow where T : SO_IdContainer
@@ -28,8 +28,9 @@ namespace bnj.id_assigner.Editor
 #endif
         [SerializeField] private T[] _items = new T[] { };
 
-        private int HighestAssignedId => _items.OrderByDescending(x => x.Id).First().Id;
+        private int HighestAssignedId => _items.Max(x => x.Id);
 
+        // used to show/hide buttons and warnings about unassigned/duplicate IDs.
         private bool HasUnassignedIds => _items.Count(x => !x.IdSet) > 0;
         private bool HasDuplicateIds
         {
@@ -45,7 +46,7 @@ namespace bnj.id_assigner.Editor
 
 #if ODIN_INSPECTOR
         [PropertyOrder(-3)]
-        [InfoBox("Make sure when assigning IDs that all cards are fetched (in case cards were added or removed)!")]
+        [InfoBox("Make sure when assigning IDs that all items are fetched (in case items were added or removed)!")]
         [Button("Refresh", ButtonSizes.Medium)]
 #endif
         private void FetchAllAssets()
@@ -72,7 +73,7 @@ namespace bnj.id_assigner.Editor
                 Debug.Log($"Assigned ID {data.Id} to {data.name}");
             }
 
-            Debug.Log($"Assigned IDs for {unassigned.Length} cards");
+            Debug.Log($"Assigned IDs for {unassigned.Length} items");
         }
 
 #if ODIN_INSPECTOR
@@ -101,7 +102,7 @@ namespace bnj.id_assigner.Editor
         private void OnGUI()
         {
             EditorGUILayout.HelpBox(
-                "Make sure when assigning IDs that all cards are fetched (in case cards were added or removed)!",
+                "Make sure when assigning IDs that all items are fetched (in case items were added or removed)!",
                 MessageType.Info);
 
             if (GUILayout.Button("Refresh"))

@@ -10,12 +10,9 @@ namespace bnj.id_assigner.Runtime
     /// </summary>
     public abstract class SO_IdContainer : ScriptableObject
     {
-        // Both fields are serialized so IDs persist with the asset.
-        // _id can be edited manually in the Inspector to resolve duplicate ID issues,
-        // though this is generally discouraged — use the assigner window instead.
-        [SerializeField, Tooltip("Set to 0 to reset the ID for reassignment and resolve collisions (duplicate IDs).\nDo NOT change manually under any other circumstances! Use the ID Assigner window instead.")] private int _id;
-        [SerializeField, HideInInspector] private bool _idSet;
-
+        // Fields are serialized so IDs persist with the asset.
+        [SerializeField, Tooltip("Set to 0 to reset the ID for reassignment and resolve collisions (duplicate IDs).\nDo NOT change manually under any other circumstances! Use the ID Assigner window instead.")]
+        private int _id;
         /// <summary>
         /// Unique integer ID for this asset. Setting it also marks <see cref="IdSet"/> as <c>true</c>.
         /// </summary>
@@ -25,6 +22,8 @@ namespace bnj.id_assigner.Runtime
             set { _id = value; _idSet = true; }
         }
 
+        [SerializeField, HideInInspector]
+        private bool _idSet;
         /// <summary>
         /// <c>true</c> once <see cref="Id"/> has been explicitly assigned by the assigner; <c>false</c> on uninitialized assets.
         /// </summary>
