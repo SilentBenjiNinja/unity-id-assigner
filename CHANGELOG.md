@@ -1,3 +1,9 @@
+# 2.0.1
+
+### Improvements
+
+- Added an Editor tooltip to `_id` field of `SO_IdContainer` warning the user to not change it manually unless resolving collisions.
+
 # 2.0.0
 
 ### Breaking Changes
