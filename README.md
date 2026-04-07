@@ -10,44 +10,32 @@ Provides a base Editor window and interface for assigning and managing unique in
 ## Features
 
 - **`IIdContainer` interface** — implement on any ScriptableObject to opt in to ID management
-- **Base `IdAssigner<T>` window** — one-line subclass gives a full management window for any type
+- **Base `IdAssignerWindow<T>` window** — one-line subclass gives a full management window for any type
 - **Unassigned ID detection** — surfaces assets missing an ID and assigns them incrementally in one click
 - **Duplicate ID detection** — pings the first conflicting asset in the Project window
 - **Odin Inspector support** — rich UI with `[Button]`, `[ShowIf]`, and `[InfoBox]` when Odin is present; falls back to standard IMGUI otherwise
 
 ## Setup
 
-1. Implement `IIdContainer` on your ScriptableObject class
-2. In an `Editor` folder, create a subclass of `IdAssigner<T>` and add a `[MenuItem]` to open it
+1. Inherit from `SO_IdContainer` on your ScriptableObject class
+2. In an `Editor` folder, create a subclass of `IdAssignerWindow<T>` and add a `[MenuItem]` to open it
 
 ## Full Example
 
 ```csharp
 // Runtime — your ScriptableObject
 [CreateAssetMenu(menuName = "MyGame/Item Data", fileName = "Item_")]
-public class SO_ItemData : ScriptableObject, IIdContainer
-{
-    // Both fields must be serialized so IDs persist with the asset.
-    // _id can be edited manually in the Inspector to resolve duplicate ID issues,
-    // though this is generally discouraged — use the assigner window instead.
-    [SerializeField] private int _id;
-    [SerializeField, HideInInspector] private bool _idSet;
-
-    public int Id
-    {
-        get => _id;
-        set { _id = value; _idSet = true; }
-    }
-    public bool IdSet => _idSet;
-}
+public class SO_ItemData : SO_IdContainer { }
 
 // Editor — the ID management window
-public class ItemIdAssigner : IdAssigner<SO_ItemData>
+public class ItemIdAssigner : IdAssignerWindow<SO_ItemData>
 {
     [MenuItem("Tools/Item ID Assigner")]
     private static void OpenWindow() => GetWindow<ItemIdAssigner>().Show();
 }
 ```
+
+> `_id` is visible in the Inspector and can be edited manually to resolve duplicate ID issues, though this is generally discouraged — use the assigner window instead.
 
 ## Usage
 

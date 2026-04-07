@@ -1,6 +1,6 @@
 {
   "name": "com.bnj.id-assigner",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "displayName": "BNJ - ID Assigner",
   "description": "Base Editor window and interface for assigning and managing unique integer IDs across ScriptableObject assets. Extend once per asset type to get automatic detection of unassigned and duplicate IDs.",
   "unity": "2020.3",

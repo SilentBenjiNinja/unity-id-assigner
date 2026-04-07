@@ -18,9 +18,9 @@ namespace bnj.id_assigner.Editor
     // TODO: auto-refresh?
     // TODO: tests
 #if ODIN_INSPECTOR
-    public abstract class IdAssigner<T> : OdinEditorWindow where T : Object, IIdContainer
+    public abstract class IdAssignerWindow<T> : OdinEditorWindow where T : SO_IdContainer
 #else
-    public abstract class IdAssigner<T> : EditorWindow where T : Object, IIdContainer
+    public abstract class IdAssignerWindow<T> : EditorWindow where T : SO_IdContainer
 #endif
     {
 #if ODIN_INSPECTOR
