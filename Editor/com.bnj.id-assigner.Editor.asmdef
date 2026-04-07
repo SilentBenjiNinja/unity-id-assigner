@@ -1,0 +1,17 @@
+{
+    "name": "com.bnj.id-assigner.Editor",
+    "rootNamespace": "",
+    "references": [
+        "com.bnj.id-assigner.Runtime",
+        "com.bnj.utility-toolkit.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

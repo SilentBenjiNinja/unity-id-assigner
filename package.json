@@ -1,8 +1,8 @@
 {
-  "name": "com.bnj.package-template",
+  "name": "com.bnj.id-assigner",
   "version": "1.0.0",
-  "displayName": "BNJ - Template",
-  "description": "This is the lovely description to this very useful package.",
+  "displayName": "BNJ - ID Assigner",
+  "description": "Base Editor window and interface for assigning and managing unique integer IDs across ScriptableObject assets. Extend once per asset type to get automatic detection of unassigned and duplicate IDs.",
   "unity": "2020.3",
   "author": {
     "name": "SilentBenjiNinja",
