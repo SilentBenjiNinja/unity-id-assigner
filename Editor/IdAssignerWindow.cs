@@ -16,6 +16,8 @@ namespace bnj.id_assigner.Editor
     /// </summary>
     // TODO: actually check that the non-Odin editor window works as intended!
     // TODO: auto-refresh? separate fetch-in-use vs fetch all buttons? some way to show which assets are unassigned/duplicated without Odin's info boxes?
+    // TODO: IDs from duplicated assets should be set to 0 by default (on creation and duplication) to avoid confusion and make it easier to find them with the "Fix" button.
+    // TODO: Assets with duplicate IDs should be highlighted in the list (red text?) to make them easier to find. Duplicate entries could also have a button to reset their ID to 0 for reassignment which would allow for readonly ID in the inspector. Also can probably be optimized by only checking for duplicates once and caching the result, instead of re-checking every time we draw the GUI.
     // TODO: tests
 #if ODIN_INSPECTOR
     public abstract class IdAssignerWindow<T> : OdinEditorWindow where T : SO_IdContainer
