@@ -5,7 +5,9 @@
         "com.bnj.id-assigner.Runtime",
         "com.bnj.utility-toolkit.Runtime"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

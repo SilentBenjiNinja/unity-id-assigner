@@ -1,3 +1,9 @@
+# 2.0.2
+
+### Fixes
+
+- Fixed Editor assembly not being marked as Editor platform only, preventing downstream projects from building.
+
 # 2.0.1
 
 ### Improvements
